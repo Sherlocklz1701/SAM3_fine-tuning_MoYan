@@ -2,11 +2,9 @@
 
 > 代码目录 `deploy_api/`，推理环境 `python=/root/miniconda3/envs/uly/bin/python`。
 >
-> **权重位置**（当前未解包 tar，直接指向真实源路径）：
-> - base：`/root/models/sam3/sam3.pt`
-> - λ 混合：`/root/runs/sam3ft-muntrungca_lora_r6/final/current_r6_ep14/model_only_r6_ep14.pth`
->
-> 也可解包 `/root/weights_bundle/sam3ft_weights_r6_ep14.tar` 后用 `--base/--model-only` 指向 `/root/weights_bundle/`。
+> **权重位置**（已解包在 `/root/weights_bundle/`，serve.py 默认取 bundle 目录）：
+> - `sam3.pt`、`model_only_r6_ep14.pth`、`bpe_simple_vocab_16e6.txt.gz` 与 `deploy_api/` 同目录
+> - 原始训练源（备份）：`/root/models/sam3/sam3.pt` 与 `/root/runs/sam3ft-muntrungca_lora_r6/final/current_r6_ep14/`
 
 ## 1. 上传代码
 

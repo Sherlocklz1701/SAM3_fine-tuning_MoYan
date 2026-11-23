@@ -9,8 +9,8 @@
 
 权重体积过大（约 20 GB），**不放入 Git**。实际权重位于：
 
-- 服务器 `/root/weights_bundle/`（`sam3.pt`、`model_only_r6_ep14.pth`、`detector_prefix_r6_ep14.pth`、`lora_adapter_r6_ep14.pth`）
-- 或打包文件 `sam3ft_weights_r6_ep14.tar`（10.22 GB）
+- 服务器 `/root/weights_bundle/`（已解包：`sam3.pt`、`model_only_r6_ep14.pth`、`detector_prefix_r6_ep14.pth`、`lora_adapter_r6_ep14.pth`）
+- 原始训练源（备份）：`/root/models/sam3/sam3.pt` 与 `/root/runs/sam3ft-muntrungca_lora_r6/final/current_r6_ep14/`
 
 部署时把这三个文件放到 `deploy_api/` 的**上一级目录**（本仓库根目录）即可：
 
