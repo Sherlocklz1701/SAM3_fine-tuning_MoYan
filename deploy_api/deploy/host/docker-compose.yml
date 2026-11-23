@@ -1,0 +1,55 @@
+# 宿主机侧：分割 API + nginx(HTTPS) 编排
+# 位置：deploy_api/deploy/host/docker-compose.yml
+# 使用：见同目录 README.md —— 备好权重/镜像/证书后 `docker compose up -d`
+services:
+  segment-api:
+    # 含 sam3 + torch(cuda) + fastapi 的镜像；见 README「得到镜像」
+    image: ${SAM3_IMAGE:-<你的SAM3镜像>:latest}
+    restart: unless-stopped
+    working_dir: /app
+    environment:
+      DEPLOY_API_KEY: ${DEPLOY_API_KEY:?请在 .env 里设置}
+      DEPLOY_MAX_BYTES: "20971520"
+      DEPLOY_OVERLAY_MAX_EDGE: "1024"
+      DEPLOY_OVERLAY_QUALITY: "85"
+    command: >
+      python -m deploy_api.serve
+      --host 0.0.0.0 --port 8000
+      --base /models/sam3.pt
+      --model-only /models/model_only_r6_ep14.pth
+      --bpe /models/bpe_simple_vocab_16e6.txt.gz
+    volumes:
+      # 权重（只读）：先在宿主机 ./weights/ 放好三个文件（docker cp 从容器取出，见 README）
+      - ./weights/sam3.pt:/models/sam3.pt:ro
+      - ./weights/model_only_r6_ep14.pth:/models/model_only_r6_ep14.pth:ro
+      - ./weights/bpe_simple_vocab_16e6.txt.gz:/models/bpe_simple_vocab_16e6.txt.gz:ro
+      # 代码（只读）：挂载 deploy_api 包（../.. 相对本文件 = deploy_api/）
+      - ../../:/app/deploy_api:ro
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request as u; u.urlopen('http://127.0.0.1:8000/readyz', timeout=3)"]
+      interval: 30s
+      timeout: 5s
+      retries: 10
+      start_period: 90s
+    # 单卡 GPU（nvidia-container-toolkit；如用旧语法可换 gpus: all）
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    # 不直接对外暴露 8000：仅 nginx 反代可达（更安全）
+
+  nginx:
+    image: nginx:alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./certs:/etc/nginx/certs:ro   # fullchain.pem + privkey.pem
+    depends_on:
+      segment-api:
+        condition: service_healthy

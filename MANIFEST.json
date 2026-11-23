@@ -1,0 +1,31 @@
+{
+ "generated": "2026-11-16",
+ "bundle": "sam3ft_weights_r6_ep14",
+ "note": "main fine-tuned weight = R6 ep14 (user correction: no r4)",
+ "files": {
+  "sam3.pt": {
+   "bytes": 3450062241,
+   "sha256": "9999e2341ceef5e136daa386eecb55cb414446a00ac2b55eb2dfd2f7c3cf8c9e"
+  },
+  "lora_adapter_r6_ep14.pth": {
+   "bytes": 43131661,
+   "sha256": "702852387e53bd6492424c3bca196f2a45f8c2161a5a8f461976a3683f2565ee"
+  },
+  "model_only_r6_ep14.pth": {
+   "bytes": 3362662029,
+   "sha256": "a124132ddce01ce1d45bb558e7206356ede7dc85cea3c0b2a845cdc6c90e8d2b"
+  },
+  "detector_prefix_r6_ep14.pth": {
+   "bytes": 3362677573,
+   "sha256": "195ea6301d4c7c8cc39e13682dc7c8e8b87be9e18313fb35f933c0aac277ef06"
+  },
+  "merge_summary_ep14.json": {
+   "bytes": 1285,
+   "sha256": "1672fe7b0970de50367b8beb8ef5696c74fccfc5e64f602b139ff33fa63ce678"
+  },
+  "CURRENT_WEIGHT.json": {
+   "bytes": 2154,
+   "sha256": "d039ca72948521dbbb1d6694151220460c363dbb4b2915604f1842aea8f9e634"
+  }
+ }
+}

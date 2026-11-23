@@ -1,0 +1,43 @@
+{
+  "canonical_current_weight": true,
+  "main_weight": {
+    "path": "/root/runs/sam3ft-muntrungca_lora_r6/final/current_r6_ep14/detector_prefix_r6_ep14.pth",
+    "sha256": "195ea6301d4c7c8cc39e13682dc7c8e8b87be9e18313fb35f933c0aac277ef06",
+    "kind": "detector_prefix_state_dict"
+  },
+  "best_checkpoint_ref": {
+    "path": "/root/runs/sam3ft-muntrungca_lora_r6/checkpoints/checkpoint_14.pt",
+    "note": "R6 periodic checkpoint_14 (epoch=14, steps_micro=2464, updates=616); referenced, NOT copied"
+  },
+  "epoch": 14,
+  "updates": 616,
+  "thresholds": {
+    "blackheads": 0.55,
+    "pustules": 0.65,
+    "whiteheads": 0.5
+  },
+  "base": {
+    "path": "/root/models/sam3/sam3.pt",
+    "sha256": "9999e2341ceef5e136daa386eecb55cb414446a00ac2b55eb2dfd2f7c3cf8c9e"
+  },
+  "decision_source": "user 2026-11-10 (product decision: solidify R6 checkpoint_14 as current primary weight; v2 inference thresholds)",
+  "reference_to_compare": {
+    "path": "/root/runs/sam3ft-muntrungca_lora_r4/final/sam3ft_muntrungca_lora_r4_detector_prefix.pth",
+    "sha256": "205c0c45f0509b9dc05c00da75306e3340ab35e80890e9a683bc46a2b219cb23",
+    "note": "R4 primary weight (detector prefix); overall R4 F1 higher, kept for comparison"
+  },
+  "test101_v2_metrics": {
+    "evaluation_run_dir": "/root/runs/sam3ft-muntrungca-lora-r6-eval/ep14_test_ft/",
+    "note": "consolidated v2 metric summary maintained by evaluator (DSH tasks 4-8); remote run dir above; mirrored under runs/SAM3FT-001/lora-r6/evaluation/"
+  },
+  "component_weights": {
+    "model_only_r6_ep14": "/root/runs/sam3ft-muntrungca_lora_r6/final/current_r6_ep14/model_only_r6_ep14.pth",
+    "lora_adapter_r6_ep14": "/root/runs/sam3ft-muntrungca_lora_r6/final/current_r6_ep14/lora_adapter_r6_ep14.pth",
+    "merge_summary_ep14": "/root/runs/sam3ft-muntrungca_lora_r6/final/current_r6_ep14/merge_summary_ep14.json"
+  },
+  "provenance": {
+    "producer_task": "task-3 (trainer merge) -> task-9 (normalize current primary)",
+    "source_dir": "/root/runs/sam3ft-muntrungca_lora_r6/final/ep14_ckpt",
+    "source_hashes_recorded_in": "/root/runs/sam3ft-muntrungca_lora_r6/final/ep14_ckpt/merge_summary_ep14.json"
+  }
+}

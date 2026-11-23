@@ -1,0 +1,9 @@
+{
+  "policy": "SAM3FT-001 segmentation LoRA mixing \u03bb policy (user 2026-11-16)",
+  "formula": "W = base + \u03bb * (LoraMerge - base)",
+  "classes_lambda_1_0": ["blackheads", "pustules", "whiteheads"],
+  "default_lambda_else": 0.1,
+  "lambda_1_0_weight_ref": "current main = R6 ep14 (detector_prefix_r6_ep14.pth 195ea6301d4c7c8cc39e13682dc7c8e8b87be9e18313fb35f933c0aac277ef06)",
+  "rationale_note": "in-domain skin classes use full LoRA (main weight); any other class (acne, dark circles, ...) conservative 0.1",
+  "caveat": "masks come from base sam3 segmentation head (reference-level); no pixel GT anywhere"
+}

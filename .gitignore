@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.DS_Store
+
+# 密钥（绝不提交）
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+secrets.*

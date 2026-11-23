@@ -1,0 +1,36 @@
+{
+ "target_epoch": 14,
+ "source_ckpt": "/root/runs/sam3ft-muntrungca_lora_r6/checkpoints/checkpoint_14.pt",
+ "source_ckpt_sha256": "a5bd62c30835d0b716e35ca54742418d1d77e57bc2c4f2e01a64dd4ccc41ccbd",
+ "ckpt_epoch": 14,
+ "ckpt_steps_micro": 2464,
+ "ckpt_updates": 616,
+ "lora": {
+  "rank": 16,
+  "alpha": 32.0,
+  "scaling": 2.0,
+  "trainable": 10744208,
+  "total": 848955077,
+  "replaced_linears": 164,
+  "replaced_mha": 30
+ },
+ "merged_tensors": 1106,
+ "files": {
+  "detector_prefix_r6_ep14": {
+   "path": "/root/runs/sam3ft-muntrungca_lora_r6/final/ep14_ckpt/detector_prefix_r6_ep14.pth",
+   "sha256": "195ea6301d4c7c8cc39e13682dc7c8e8b87be9e18313fb35f933c0aac277ef06"
+  },
+  "model_only_r6_ep14": {
+   "path": "/root/runs/sam3ft-muntrungca_lora_r6/final/ep14_ckpt/model_only_r6_ep14.pth",
+   "sha256": "a124132ddce01ce1d45bb558e7206356ede7dc85cea3c0b2a845cdc6c90e8d2b"
+  },
+  "lora_adapter_r6_ep14": {
+   "path": "/root/runs/sam3ft-muntrungca_lora_r6/final/ep14_ckpt/lora_adapter_r6_ep14.pth",
+   "sha256": "702852387e53bd6492424c3bca196f2a45f8c2161a5a8f461976a3683f2565ee"
+  },
+  "merge_summary_ep14": {
+   "path": "/root/runs/sam3ft-muntrungca_lora_r6/final/ep14_ckpt/merge_summary_ep14.json",
+   "sha256": "043068780fea53bff8fcd2da1a4df08ce86a444f0e6ff5590c131beadb50cfb1"
+  }
+ }
+}
