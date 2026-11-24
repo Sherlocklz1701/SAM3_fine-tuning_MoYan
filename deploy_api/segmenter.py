@@ -5,6 +5,8 @@
 
 只在装有 sam3 + torch(cuda) 的推理机（4090）上导入本模块。
 """
+import os
+
 import numpy as np
 
 from .lam_policy import lambda_for_prompt
@@ -34,6 +36,10 @@ class Sam3Segmenter:
 
         torch.backends.cuda.matmul.allow_tf32 = True
         torch.backends.cudnn.allow_tf32 = True
+        # 部分环境的 cuDNN 库损坏/冲突会报 CUDNN_STATUS_NOT_INITIALIZED；
+        # 设 DEPLOY_DISABLE_CUDNN=1 可禁用 cuDNN、改用原生 CUDA 卷积（单图推理性能损失可忽略）。
+        if os.environ.get("DEPLOY_DISABLE_CUDNN", "").lower() in ("1", "true", "yes", "on"):
+            torch.backends.cudnn.enabled = False
 
         self.model = build_sam3_image_model(
             bpe_path=bpe_path, device=device, eval_mode=True,
